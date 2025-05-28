@@ -378,7 +378,7 @@ export default function ProjectsPage() {
           <div className="text-center space-y-4">
             <h2 className="text-2xl font-bold">Have a Project in Mind?</h2>
             <p className="text-muted-foreground">
-              I'd love to help bring that ideas to life
+              I'd love to help bring those ideas to life
             </p>
             <Button
               asChild
