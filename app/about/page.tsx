@@ -190,13 +190,13 @@ export default function AboutPage() {
           </Card> */}
 
           {/* Social Links */}
-          <div className="text-center space-y-6">
+          <div className="text-center space-y-6 pt-20">
             <h2 className="text-2xl font-bold">Let's Connect</h2>
-            <div className="flex justify-center space-x-4">
+            <div className="flex flex-wrap justify-center gap-3 sm:space-x-4 sm:gap-0">
               <Button
                 variant="outline"
                 asChild
-                className="border-green-500/50 hover:bg-green-500/10 hover:text-green-500"
+                className="border-green-500/50 hover:bg-green-500/10 hover:text-green-500 flex-1 min-w-[140px] sm:min-w-0"
               >
                 <a
                   href="https://github.com/Shivamycodee"
@@ -210,7 +210,7 @@ export default function AboutPage() {
               <Button
                 variant="outline"
                 asChild
-                className="border-green-500/50 hover:bg-green-500/10 hover:text-green-500"
+                className="border-green-500/50 hover:bg-green-500/10 hover:text-green-500 flex-1 min-w-[140px] sm:min-w-0"
               >
                 <a
                   href="https://www.linkedin.com/in/shivam-yadav-917863224/"
@@ -224,7 +224,17 @@ export default function AboutPage() {
               <Button
                 variant="outline"
                 asChild
-                className="border-green-500/50 hover:bg-green-500/10 hover:text-green-500"
+                className="border-green-500/50 hover:bg-green-500/10 hover:text-green-500 flex-1 min-w-[140px] sm:min-w-0"
+              >
+                <a href="https://medium.com/@shivam_yadav" target="_blank" rel="noopener noreferrer" title="Medium">
+                  <img src="/medium.svg" alt="Medium" className="mr-2 h-4 w-4" />
+                  Medium
+                </a>
+              </Button>
+              <Button
+                variant="outline"
+                asChild
+                className="border-green-500/50 hover:bg-green-500/10 hover:text-green-500 flex-1 min-w-[140px] sm:min-w-0"
               >
                 <a
                   href="https://x.com/VibeWeb3"
@@ -238,7 +248,7 @@ export default function AboutPage() {
               <Button
                 variant="outline"
                 asChild
-                className="border-green-500/50 hover:bg-green-500/10 hover:text-green-500"
+                className="border-green-500/50 hover:bg-green-500/10 hover:text-green-500 flex-1 min-w-[140px] sm:min-w-0"
               >
                 <a
                   href="https://t.me/VibeWeb3"
@@ -251,6 +261,7 @@ export default function AboutPage() {
               </Button>
             </div>
           </div>
+          
         </motion.div>
       </div>
     </div>
