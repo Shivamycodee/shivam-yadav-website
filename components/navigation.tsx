@@ -226,7 +226,7 @@ const handleMaximize = () => {
               <div className="p-4 space-y-2">
                 {navItems.map((item, index) => {
                   const Icon = item.icon
-                  const isActive = pathname === item.href
+                  const isActive = pathname.includes('articles') ? item.href === '/articles': pathname == item.href
                   return (
                     <motion.div
                       key={item.href}
@@ -288,7 +288,7 @@ const handleMaximize = () => {
             <div className="flex items-center justify-around">
               {navItems.map((item) => {
                 const Icon = item.icon
-                const isActive = pathname === item.href
+                const isActive = pathname.includes('articles') ? item.href === '/articles': pathname == item.href
                 return (
                   <Link key={item.href} href={item.href} className="relative group">
                     <motion.div
