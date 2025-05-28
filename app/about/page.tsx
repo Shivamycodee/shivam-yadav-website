@@ -91,7 +91,7 @@ export default function AboutPage() {
                   </div>
                   <div className="flex items-center space-x-3 text-muted-foreground">
                     <Calendar className="h-4 w-4 text-green-500" />
-                    <span>Available for projects</span>
+                    <span>Available</span>
                   </div>
                   <div className="flex items-center space-x-3 text-muted-foreground">
                     <Mail className="h-4 w-4 text-green-500 flex-shrink-0" />
@@ -261,7 +261,7 @@ export default function AboutPage() {
               </Button>
             </div>
           </div>
-          
+
         </motion.div>
       </div>
     </div>

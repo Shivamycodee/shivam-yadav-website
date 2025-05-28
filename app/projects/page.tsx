@@ -116,32 +116,6 @@ const projects = [
     imageAlt: "artha",
   },
   {
-    id: 3.5,
-    title: "Limit-Order Hook Uniswap (V4)",
-    description: "Set limit Order to swap tokens on uniswap",
-    technologies: ["Blockchain","Solidity","Smart Contracts","Foundry","Uniswap","Hooks","World ID","Worldcoin","$UNI"],
-    githubUrl: "https://github.com/Shivamycodee/limit-order-hook",
-    liveUrl:
-      "https://github.com/Shivamycodee/limit-order-hook",
-    status: "Maintained",
-    statusColor: "text-blue-500",
-    image: "/projects/3.gif",
-    imageAlt: "limit order hook",
-  },
-   {
-    id: 3.8,
-    title: "C2T2",
-    description: "Cross-Chain Token Transfer Application using Foundry & Wormhole",
-    technologies: ["Blockchain","Solidity","Smart Contracts","Foundry","Wormhole","Tokens","Cross-Chain"],
-    githubUrl: "https://github.com/Shivamycodee/c2t2",
-    liveUrl:
-      "https://github.com/Shivamycodee/c2t2",
-    status: "Maintained",
-    statusColor: "text-blue-500",
-    image: "images/swap.png",
-    imageAlt: "limit order hook",
-  },
-  {
     id: 4,
     title: "@shivamycodee/confession",
     description:
@@ -171,6 +145,32 @@ const projects = [
       "AI chat interface with conversation bubbles and modern messaging design",
     command: "python -m uvicorn main:app",
   },
+  {
+    id: 3.5,
+    title: "Limit-Order Hook Uniswap (V4)",
+    description: "Set limit Order to swap tokens on uniswap",
+    technologies: ["Blockchain","Solidity","Smart Contracts","Foundry","Uniswap","Hooks","World ID","Worldcoin","$UNI"],
+    githubUrl: "https://github.com/Shivamycodee/limit-order-hook",
+    liveUrl:
+      "https://github.com/Shivamycodee/limit-order-hook",
+    status: "Maintained",
+    statusColor: "text-blue-500",
+    image: "/projects/3.gif",
+    imageAlt: "limit order hook",
+  },
+  {
+    id: 3.8,
+    title: "C2T2",
+    description: "Cross-Chain Token Transfer Application using Foundry & Wormhole",
+    technologies: ["Blockchain","Solidity","Smart Contracts","Foundry","Wormhole","Tokens","Cross-Chain"],
+    githubUrl: "https://github.com/Shivamycodee/c2t2",
+    liveUrl:
+      "https://github.com/Shivamycodee/c2t2",
+    status: "Maintained",
+    statusColor: "text-blue-500",
+    image: "images/swap.png",
+    imageAlt: "limit order hook",
+  }
 ];
 
 export default function ProjectsPage() {

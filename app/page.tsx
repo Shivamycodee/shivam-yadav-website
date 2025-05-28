@@ -181,14 +181,6 @@ export default function HomePage() {
                   command: "cat about.md",
                 },
                 {
-                  title: "~/articles",
-                  description: "Technical writings",
-                  content: "Ideas, thoughts and plans about blockchain, AI, technology and whatever comes to my mind.",
-                  href: "/articles",
-                  icon: "📝",
-                  command: "ls articles/*.md",
-                },
-                {
                   title: "~/projects",
                   description: "Projects I have launched",
                   content: "Applications, websites, NPM packages and tools I've built to solve real-world problems.",
@@ -196,6 +188,14 @@ export default function HomePage() {
                   icon: "🚀",
                   command: "git log --oneline",
                 },
+                {
+                  title: "~/articles",
+                  description: "Technical writings",
+                  content: "Ideas, thoughts and plans about blockchain, AI, technology and whatever comes to my mind.",
+                  href: "/articles",
+                  icon: "📝",
+                  command: "ls articles/*.md",
+                }
               ].map((section, index) => (
                 <motion.div
                   key={section.title}
