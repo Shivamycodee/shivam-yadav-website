@@ -114,7 +114,7 @@ const handleMaximize = () => {
             {/* Navigation Items */}
             {navItems.map((item) => {
               const Icon = item.icon
-              const isActive = pathname === item.href
+              const isActive =  pathname.includes('articles') ? item.href === '/articles': pathname == item.href
               return (
                 <motion.div key={item.href} whileHover={{ x: 4 }} className="relative">
                   <Link href={item.href} className="group block">
