@@ -5,6 +5,8 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import Navigation from "@/components/navigation"
 import { Analytics } from "@vercel/analytics/next"
+import Script from 'next/script'
+
 
 const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"] })
 
@@ -19,7 +21,22 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+<html lang="en" suppressHydrationWarning>
+    <head>
+    {/* Google Analytics */}
+    <Script
+      src="https://www.googletagmanager.com/gtag/js?id=G-KRTHN0EN7N"
+      strategy="afterInteractive"
+    />
+    <Script id="google-analytics" strategy="afterInteractive">
+      {`
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-KRTHN0EN7N');
+      `}
+    </Script>
+  </head>
       <body className={jetbrainsMono.className}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <div className="min-h-screen bg-black text-green-400 overflow-x-hidden">
