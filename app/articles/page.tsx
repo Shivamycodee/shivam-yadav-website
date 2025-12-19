@@ -14,6 +14,17 @@ import { Button } from "@/components/ui/button";
 
 const articles = [
   {
+    slug: "ssh-attack-analysis",
+    title: "My Server Was Attacked 5,866 Times",
+    description:
+      "What I learned from monitoring SSH attacks on my server—and why blockchain projects are especially at risk.",
+    date: "2025-12-19",
+    readTime: "5 min read",
+    category: "Security",
+    image: "/images/articles/6.png",
+    imageAlt: "SSH attack analysis visualization",
+  },
+  {
     slug: "judgement-ai",
     title: "Judgement AI",
     description:

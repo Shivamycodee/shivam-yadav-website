@@ -16,7 +16,7 @@ That’s why I built **AlienMeet** — a faster, more private way to connect.
 
 # Centralized vs Decentralized Video Calls
 
-![centralized (zoom) vs decentralized (alienmeet)](https://camo.githubusercontent.com/6e2934de1e06892b851a563e8d87d3c98ee1154ed6075d8d7754f0cd120f309b/68747470733a2f2f626c6f676765656b2e6d652f6e6974726f7061636b5f7374617469632f467a48626757547959574c6c794d4b4a425957704f62635071634d76724b4b692f6173736574732f696d616765732f6f7074696d697a65642f7265762d636436353764312f626c6f676765656b2e6d652f77702d636f6e74656e742f75706c6f6164732f323031392f30352f3230313930352d776562736f636b65742d76732d646174616368616e6e656c2e6a7067)
+![centralized (zoom) vs decentralized (alienmeet)](https://raw.githubusercontent.com/Shivamycodee/shivam-yadav-website/refs/heads/main/public/images/articles/cvscd.png)
 
 # How it works
 

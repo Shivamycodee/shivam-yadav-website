@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>SSH Failed Login Attempts - Weekly Analysis</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 40px;
+            background: #f5f5f5;
+            margin: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 30px;
+            gap: 20px;
+        }
+        .stat-box {
+            flex: 1;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            border-left: 4px solid #e74c3c;
+        }
+        .stat-number {
+            font-size: 32px;
+            font-weight: bold;
+            color: #e74c3c;
+            margin-bottom: 5px;
+        }
+        .stat-label {
+            color: #666;
+            font-size: 14px;
+        }
+        canvas {
+            max-height: 400px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #999;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔒 SSH Failed Login Attempts Analysis</h1>
+        <div class="subtitle">AWS Lightsail Server - Weekly Attack Patterns</div>
+
+        <div class="stats">
+            <div class="stat-box">
+                <div class="stat-number">5,866</div>
+                <div class="stat-label">Total Failed Attempts</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">6</div>
+                <div class="stat-label">Weeks Monitored</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">978</div>
+                <div class="stat-label">Avg. Attempts/Week</div>
+            </div>
+        </div>
+
+        <canvas id="weeklyChart"></canvas>
+
+        <div class="footer">
+            Data collected from Telegram monitoring bot | Analysis Period: 2025-11-09 to 2025-12-14
+        </div>
+    </div>
+
+    <script>
+        const data = [{"week":"2025-11-09","count":63},{"week":"2025-11-16","count":397},{"week":"2025-11-23","count":1043},{"week":"2025-11-30","count":2179},{"week":"2025-12-07","count":1767},{"week":"2025-12-14","count":417}];
+
+        const ctx = document.getElementById('weeklyChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: data.map(d => {
+                    const date = new Date(d.week);
+                    return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+                }),
+                datasets: [{
+                    label: 'Failed Login Attempts',
+                    data: data.map(d => d.count),
+                    backgroundColor: 'rgba(231, 76, 60, 0.8)',
+                    borderColor: 'rgba(231, 76, 60, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Weekly Distribution of Attack Attempts',
+                        font: {
+                            size: 16
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return 'Attempts: ' + context.parsed.y.toLocaleString();
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return value.toLocaleString();
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Number of Failed Attempts'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Week Starting'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

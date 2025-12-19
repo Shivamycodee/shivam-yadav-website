@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>SSH Attack Origins - Geographical Analysis</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+            margin: 0;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .header {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+            margin: 0 0 10px 0;
+        }
+        .subtitle {
+            color: #666;
+            font-size: 14px;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .stat-box {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 36px;
+            font-weight: bold;
+            color: #e74c3c;
+            margin-bottom: 5px;
+        }
+        .stat-label {
+            color: #666;
+            font-size: 14px;
+        }
+        .chart-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .chart-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        canvas {
+            max-height: 500px;
+        }
+        .two-col {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+            gap: 20px;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #999;
+            font-size: 12px;
+        }
+        @media (max-width: 768px) {
+            .two-col {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌍 SSH Attack Origins - Geographical Analysis</h1>
+            <div class="subtitle">AWS Lightsail Server Security Monitoring</div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-box">
+                <div class="stat-number">5,866</div>
+                <div class="stat-label">Total Failed Attempts</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">99</div>
+                <div class="stat-label">Countries</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">620</div>
+                <div class="stat-label">Cities</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">59</div>
+                <div class="stat-label">Avg. per Country</div>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <div class="chart-title">Top 15 Countries by Attack Volume</div>
+            <canvas id="countriesChart"></canvas>
+        </div>
+
+        <div class="two-col">
+            <div class="chart-container">
+                <div class="chart-title">Top 10 Cities</div>
+                <canvas id="citiesChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <div class="chart-title">Attack Distribution</div>
+                <canvas id="pieChart"></canvas>
+            </div>
+        </div>
+
+        <div class="footer">
+            Data Analysis | Monitoring Period: November - December 2025
+        </div>
+    </div>
+
+    <script>
+        // Register the datalabels plugin
+        Chart.register(ChartDataLabels);
+
+        const countryNames = {"CN":"China","US":"United States","IN":"India","RU":"Russia","KR":"South Korea","CA":"Canada","TN":"Tunisia","ZA":"South Africa","SE":"Sweden","TW":"Taiwan","GB":"United Kingdom","BR":"Brazil","ID":"Indonesia","DE":"Germany","FR":"France","JP":"Japan","VN":"Vietnam","TH":"Thailand","SG":"Singapore","NL":"Netherlands"};
+        const topCountries = [{"country":"CN","count":963},{"country":"US","count":832},{"country":"IN","count":478},{"country":"RU","count":467},{"country":"KR","count":332},{"country":"CA","count":240},{"country":"TN","count":229},{"country":"ZA","count":182},{"country":"SE","count":148},{"country":"TW","count":127},{"country":"VN","count":127},{"country":"IQ","count":127},{"country":"GB","count":120},{"country":"HK","count":111},{"country":"SG","count":111}];
+        const topCities = [{"city":", CN","count":507},{"city":"Nanjing, CN","count":318},{"city":", US","count":313},{"city":", RU","count":260},{"city":", IN","count":216},{"city":"Edmonton, CA","count":199},{"city":"Tunis, TN","count":188},{"city":"Los Angeles, US","count":185},{"city":", ZA","count":173},{"city":"London, GB","count":102}];
+
+        // Colors
+        const colors = [
+            '#e74c3c', '#3498db', '#2ecc71', '#f39c12', '#9b59b6',
+            '#1abc9c', '#e67e22', '#34495e', '#16a085', '#c0392b',
+            '#2980b9', '#8e44ad', '#27ae60', '#d35400', '#7f8c8d'
+        ];
+
+        // Countries Chart
+        const ctx1 = document.getElementById('countriesChart').getContext('2d');
+        new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: topCountries.map(d => countryNames[d.country] || d.country),
+                datasets: [{
+                    label: 'Failed Login Attempts',
+                    data: topCountries.map(d => d.count),
+                    backgroundColor: colors,
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    datalabels: {
+                        anchor: 'end',
+                        align: 'end',
+                        color: '#333',
+                        font: {
+                            weight: 'bold',
+                            size: 14
+                        },
+                        formatter: function(value, context) {
+                            const total = 5866;
+                            const percentage = ((value / total) * 100).toFixed(1);
+                            return value.toLocaleString() + ' (' + percentage + '%)';
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const total = 5866;
+                                const value = context.parsed.x;
+                                const percentage = ((value / total) * 100).toFixed(1);
+                                return 'Attempts: ' + value.toLocaleString() + ' (' + percentage + '%)';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        grace: '8%',
+                        title: {
+                            display: true,
+                            text: 'Number of Failed Attempts'
+                        }
+                    }
+                },
+                layout: {
+                    padding: {
+                        right: 10
+                    }
+                }
+            }
+        });
+
+        // Cities Chart
+        const ctx2 = document.getElementById('citiesChart').getContext('2d');
+        new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: topCities.map(d => {
+                    // Clean up city names
+                    const parts = d.city.split(', ');
+                    if (parts[0] === '') {
+                        return 'Unknown, ' + (countryNames[parts[1]] || parts[1]);
+                    }
+                    return parts[0] + ', ' + (countryNames[parts[1]] || parts[1]);
+                }),
+                datasets: [{
+                    label: 'Attacks',
+                    data: topCities.map(d => d.count),
+                    backgroundColor: '#3498db',
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    datalabels: {
+                        anchor: 'end',
+                        align: 'right',
+                        offset: 4,
+                        color: '#333',
+                        font: {
+                            weight: 'bold',
+                            size: 15
+                        },
+                        formatter: function(value) {
+                            return value.toLocaleString();
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Pie Chart - Top 5 vs Others
+        const ctx3 = document.getElementById('pieChart').getContext('2d');
+        const top5Total = topCountries.slice(0, 5).reduce((sum, d) => sum + d.count, 0);
+        const othersTotal = 5866 - top5Total;
+
+        new Chart(ctx3, {
+            type: 'doughnut',
+            data: {
+                labels: [
+                    ...topCountries.slice(0, 5).map(d => countryNames[d.country] || d.country),
+                    'Others (' + (99 - 5) + ' countries)'
+                ],
+                datasets: [{
+                    data: [
+                        ...topCountries.slice(0, 5).map(d => d.count),
+                        othersTotal
+                    ],
+                    backgroundColor: [...colors.slice(0, 5), '#95a5a6'],
+                    borderWidth: 2,
+                    borderColor: '#fff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: {
+                            font: {
+                                size: 11
+                            },
+                            generateLabels: function(chart) {
+                                const data = chart.data;
+                                const total = 5866;
+                                return data.labels.map((label, i) => {
+                                    const value = data.datasets[0].data[i];
+                                    const percentage = ((value / total) * 100).toFixed(1);
+                                    return {
+                                        text: label + ': ' + value.toLocaleString() + ' (' + percentage + '%)',
+                                        fillStyle: data.datasets[0].backgroundColor[i],
+                                        hidden: false,
+                                        index: i
+                                    };
+                                });
+                            }
+                        }
+                    },
+                    datalabels: {
+                        color: '#fff',
+                        font: {
+                            weight: 'bold',
+                            size: 16
+                        },
+                        formatter: function(value, context) {
+                            const total = 5866;
+                            const percentage = ((value / total) * 100).toFixed(1);
+                            return percentage + '%';
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const total = 5866;
+                                const value = context.parsed;
+                                const percentage = ((value / total) * 100).toFixed(1);
+                                return context.label + ': ' + value.toLocaleString() + ' (' + percentage + '%)';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

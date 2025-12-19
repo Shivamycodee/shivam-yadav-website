@@ -1,0 +1,90 @@
+.article-holder-outer {
+  text-align: justify;
+  font-size: 1.13rem;
+  display: flex;
+  column-gap: 3rem;
+  color: white;
+}
+
+.article-holder-outer td {
+  border: 1px solid var(--secondary-color);
+}
+
+.article-holder-outer img {
+  width: 100%;
+  height: 434px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.article-holder-outer a {
+  display: inline-block;
+}
+
+.article-holder {
+  margin-inline: 20%;
+  text-align: justify;
+  font-size: 1.13rem;
+  padding-bottom: 5%;
+}
+
+.article-holder a {
+  color: lightblue;
+}
+
+.article-holder img {
+  margin-top: 2.7rem;
+  margin-bottom: 3rem;
+}
+
+ol li {
+  margin-bottom: 10px;
+}
+
+.back-button {
+  display: inline-block;
+  margin-bottom: 2rem;
+  padding: 0.5rem 1rem;
+  color: #22c55e !important;
+  border: 1px solid #22c55e;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: rgba(34, 197, 94, 0.1);
+  transform: translateX(-4px);
+}
+
+.article-holder pre {
+  background-color: #1e1e1e;
+  padding: 1rem;
+  border-radius: 6px;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+.article-holder code {
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  color: #d4d4d4;
+}
+
+.chart-container {
+  margin: 2.5rem 0;
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.02);
+  border-radius: 8px;
+}
+
+.chart-container h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .article-holder {
+    margin-inline: 5%;
+  }
+}
