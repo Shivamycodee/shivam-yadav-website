@@ -40,7 +40,7 @@ export default function SSHAttackAnalysis() {
         <li><strong>5,866 failed login attempts</strong></li>
         <li>From <strong>99 countries</strong></li>
         <li><strong>620 different cities</strong></li>
-        <li>Over just a few days</li>
+        <li>Time period: <strong>9th November 2025 to 19th December 2025</strong> (40 days)</li>
       </ul>
 
       <p>&nbsp;</p>
