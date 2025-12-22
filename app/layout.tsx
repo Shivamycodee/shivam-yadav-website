@@ -4,6 +4,7 @@ import { JetBrains_Mono } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import Navigation from "@/components/navigation"
+import InstallPWA from "@/components/install-pwa"
 import { Analytics } from "@vercel/analytics/next"
 import Script from 'next/script'
 
@@ -13,6 +14,19 @@ const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "Shivam Yadav",
   description: "Full-stack Blockchain developer | Code enthusiast | Terminal lover",
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Shivam Yadav",
+  },
+  formatDetection: {
+    telephone: false,
+  },
+}
+
+export const viewport = {
+  themeColor: "#22c55e",
 }
 
 export default function RootLayout({
@@ -23,6 +37,18 @@ export default function RootLayout({
   return (
 <html lang="en" suppressHydrationWarning>
     <head>
+    {/* PWA Meta Tags */}
+    <meta name="application-name" content="Shivam Yadav" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Shivam Yadav" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="theme-color" content="#22c55e" />
+
+    {/* Apple Touch Icons */}
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/icon-192x192.png" />
+
     {/* Google Analytics */}
     <Script
       src="https://www.googletagmanager.com/gtag/js?id=G-KRTHN0EN7N"
@@ -42,6 +68,7 @@ export default function RootLayout({
           <div className="min-h-screen bg-black text-green-400 overflow-x-hidden">
             <Analytics/>
             <Navigation />
+            <InstallPWA />
             <main className="lg:pl-20 pt-24 lg:pt-0 pb-24 lg:pb-0">{children}</main>
           </div>
         </ThemeProvider>
