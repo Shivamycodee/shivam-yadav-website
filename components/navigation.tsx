@@ -335,7 +335,7 @@ const handleMaximize = () => {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="fixed bottom-24 right-4 z-40 lg:hidden w-10 h-10 bg-green-500 text-black rounded flex items-center justify-center shadow-lg shadow-green-500/25 font-mono text-sm"
+            className="fixed bottom-32 right-4 z-40 lg:hidden w-10 h-10 bg-green-500 text-black rounded flex items-center justify-center shadow-lg shadow-green-500/25 font-mono text-sm"
           >
             <ChevronUp className="h-4 w-4" />
           </motion.button>
