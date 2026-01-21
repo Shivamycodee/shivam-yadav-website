@@ -96,9 +96,9 @@ html {
   color: rgb(34, 197, 94);
 }
 
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
+/* GSAP ScrollSmoother - overscroll prevention */
+body {
+  overscroll-behavior: none;
 }
 
 /* Terminal glow effect */
