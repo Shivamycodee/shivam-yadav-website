@@ -6,8 +6,9 @@ import { ArrowRight, Terminal, FileText, Code, Github, Linkedin, Twitter, Send a
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { useEffect, useState } from "react"
+import GitHubContributions from "@/components/github-contributions"
 
-const TECHS = ["TypeScript","JavaScript", "Solidity","Smart Contract","Hardhat","Foundry","The Graph","React","Vite","Next", "Node.js", "Python","DEFI","RWA","TOKEN","NFT","Web3","Blockchain"]
+const TECHS = ["TypeScript", "JavaScript", "Solidity", "Smart Contract", "Hardhat", "Foundry", "The Graph", "React", "Vite", "Next", "Node.js", "Python", "DEFI", "RWA", "TOKEN", "NFT", "Web3", "Blockchain"]
 
 export default function HomePage() {
   const [currentCommand, setCurrentCommand] = useState("")
@@ -253,7 +254,7 @@ export default function HomePage() {
                 </p>
               </div>
 
-                <div className="flex space-x-2">
+              <div className="flex space-x-2">
                 <Button
                   variant="outline"
                   size="icon"
@@ -261,7 +262,7 @@ export default function HomePage() {
                   className="border-green-500/50 text-green-400 hover:bg-green-500/10 hover:text-green-300"
                 >
                   <a href="https://github.com/Shivamycodee" target="_blank" rel="noopener noreferrer" title="GitHub">
-                  <Github className="h-4 w-4" />
+                    <Github className="h-4 w-4" />
                   </a>
                 </Button>
 
@@ -272,19 +273,19 @@ export default function HomePage() {
                   className="border-green-500/50 text-green-400 hover:bg-green-500/10 hover:text-green-300"
                 >
                   <a href="https://www.linkedin.com/in/shivam-yadav-917863224/" target="_blank" rel="noopener noreferrer" title="LinkedIn">
-                  <Linkedin className="h-4 w-4" />
+                    <Linkedin className="h-4 w-4" />
                   </a>
                 </Button>
 
-                   <Button
+                <Button
                   variant="outline"
                   size="icon"
                   asChild
                   className="border-green-500/50 text-green-400 hover:bg-green-500/10 hover:text-green-300"
                 >
-                    <a href="https://medium.com/@shivam_yadav" target="_blank" rel="noopener noreferrer" title="Medium">
+                  <a href="https://medium.com/@shivam_yadav" target="_blank" rel="noopener noreferrer" title="Medium">
                     <img src="/medium.svg" alt="Medium" className="h-4 w-4" />
-                    </a>
+                  </a>
                 </Button>
 
                 <Button
@@ -294,7 +295,7 @@ export default function HomePage() {
                   className="border-green-500/50 text-green-400 hover:bg-green-500/10 hover:text-green-300"
                 >
                   <a href="https://x.com/VibeWeb3" target="_blank" rel="noopener noreferrer" title="Twitter">
-                  <Twitter className="h-4 w-4" />
+                    <Twitter className="h-4 w-4" />
                   </a>
                 </Button>
 
@@ -305,10 +306,10 @@ export default function HomePage() {
                   className="border-green-500/50 text-green-400 hover:bg-green-500/10 hover:text-green-300"
                 >
                   <a href="https://t.me/VibeWeb3" target="_blank" rel="noopener noreferrer" title="Telegram">
-                  <Telegram className="h-4 w-4" />
+                    <Telegram className="h-4 w-4" />
                   </a>
                 </Button>
-                </div>
+              </div>
 
             </div>
           </motion.section>

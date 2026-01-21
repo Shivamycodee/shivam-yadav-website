@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import GitHubContributions from "@/components/github-contributions";
 
 
 // const BLOCKCHAIN_SKILLS = [
@@ -76,7 +77,7 @@ export default function AboutPage() {
             </div>
 
             {/* Info Card */}
-            <div className="space-y-6">
+            <div className="space-y-2">
               <Card className="bg-card border-green-500/20">
                 <CardHeader>
                   <CardTitle className="text-green-500 flex items-center space-x-2">
@@ -189,8 +190,18 @@ export default function AboutPage() {
             </CardContent>
           </Card> */}
 
+          {/* GitHub Contributions */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="pt-12"
+          >
+            <GitHubContributions />
+          </motion.div>
+
           {/* Social Links */}
-          <div className="text-center space-y-6 pt-20">
+          <div className="text-center space-y-6 pt-12">
             <h2 className="text-2xl font-bold">Let's Connect</h2>
             <div className="flex flex-wrap justify-center gap-3 sm:space-x-4 sm:gap-0">
               <Button
